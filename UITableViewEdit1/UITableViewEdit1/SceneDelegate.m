@@ -18,6 +18,7 @@
     
     self.window = [[UIWindow alloc] initWithWindowScene:wScene];
     self.window.rootViewController = mView;
+    self.window.backgroundColor = [UIColor systemPinkColor];
     [self.window makeKeyAndVisible];
         
 }

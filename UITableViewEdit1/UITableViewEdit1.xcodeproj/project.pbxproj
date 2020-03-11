@@ -15,6 +15,8 @@
 		B1A414F524138D3B00C7B3C8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A414F424138D3B00C7B3C8 /* main.m */; };
 		B1A414FF24138D3B00C7B3C8 /* UITableViewEdit1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A414FE24138D3B00C7B3C8 /* UITableViewEdit1Tests.m */; };
 		B1A4150A24138D3B00C7B3C8 /* UITableViewEdit1UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A4150924138D3B00C7B3C8 /* UITableViewEdit1UITests.m */; };
+		B1C8213D24193EAB00C061F6 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C8213C24193EAB00C061F6 /* Student.m */; };
+		B1C8214124193ED500C061F6 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C8214024193ED500C061F6 /* Group.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,10 @@
 		B1A4150524138D3B00C7B3C8 /* UITableViewEdit1UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITableViewEdit1UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1A4150924138D3B00C7B3C8 /* UITableViewEdit1UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITableViewEdit1UITests.m; sourceTree = "<group>"; };
 		B1A4150B24138D3B00C7B3C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1C8213B24193EAB00C061F6 /* Student.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
+		B1C8213C24193EAB00C061F6 /* Student.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
+		B1C8213F24193ED500C061F6 /* Group.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		B1C8214024193ED500C061F6 /* Group.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +108,7 @@
 		B1A414E124138D3900C7B3C8 /* UITableViewEdit1 */ = {
 			isa = PBXGroup;
 			children = (
+				B1C8213E24193EB400C061F6 /* Models */,
 				B1A414E224138D3900C7B3C8 /* AppDelegate.h */,
 				B1A414E324138D3900C7B3C8 /* AppDelegate.m */,
 				B1A414E524138D3900C7B3C8 /* SceneDelegate.h */,
@@ -132,6 +139,17 @@
 				B1A4150B24138D3B00C7B3C8 /* Info.plist */,
 			);
 			path = UITableViewEdit1UITests;
+			sourceTree = "<group>";
+		};
+		B1C8213E24193EB400C061F6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B1C8213B24193EAB00C061F6 /* Student.h */,
+				B1C8213C24193EAB00C061F6 /* Student.m */,
+				B1C8213F24193ED500C061F6 /* Group.h */,
+				B1C8214024193ED500C061F6 /* Group.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,6 +283,8 @@
 			files = (
 				B1A414EA24138D3900C7B3C8 /* ViewController.m in Sources */,
 				B1A414E424138D3900C7B3C8 /* AppDelegate.m in Sources */,
+				B1C8213D24193EAB00C061F6 /* Student.m in Sources */,
+				B1C8214124193ED500C061F6 /* Group.m in Sources */,
 				B1A414F524138D3B00C7B3C8 /* main.m in Sources */,
 				B1A414E724138D3900C7B3C8 /* SceneDelegate.m in Sources */,
 			);
