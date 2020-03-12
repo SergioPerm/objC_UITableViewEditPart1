@@ -16,8 +16,10 @@
 
     UIViewController* mView = [[ViewController alloc] init];
     
+    UINavigationController* navControlller = [[UINavigationController alloc] initWithRootViewController:mView];
+    
     self.window = [[UIWindow alloc] initWithWindowScene:wScene];
-    self.window.rootViewController = mView;
+    self.window.rootViewController = navControlller;
     self.window.backgroundColor = [UIColor systemPinkColor];
     [self.window makeKeyAndVisible];
         
