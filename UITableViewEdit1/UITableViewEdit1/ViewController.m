@@ -70,6 +70,48 @@
 
 #pragma mark - Methods
 
+- (BOOL) detectFaceIDSafeAreaType {
+    
+    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        switch ((int)[[UIScreen mainScreen] nativeBounds].size.height) {
+            case 1136:
+                return NO;
+                break;
+                
+            case 1334:
+                return NO;
+                break;
+                
+            case 1920:
+                return NO;
+                break;
+                
+            case 2208:
+                return NO;
+                break;
+                
+            case 2436:
+                return YES;
+                break;
+                
+            case 2688:
+                return YES;
+                break;
+                
+            case 1792:
+                return YES;
+                break;
+                
+            default:
+                return NO;
+                break;
+        }
+    }
+    
+    return NO;
+    
+}
+
 - (void) setupView {
     
     CGRect frame = self.view.bounds;
@@ -81,16 +123,24 @@
     
     [self.view addSubview:self.tableView];
     
-    self.view.backgroundColor = [UIColor redColor];
+    self.view.backgroundColor = [UIColor whiteColor];
    
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
             
-    self.navigationController.additionalSafeAreaInsets = UIEdgeInsetsMake(20, 0, 0, 0);
+    CGFloat topInset = 0;
+    
+    if (![self detectFaceIDSafeAreaType]) {
+        topInset = 20;
+    }
+        
+    self.navigationController.additionalSafeAreaInsets = UIEdgeInsetsMake(topInset, 0, 0, 0);
+    
+    self.view.insetsLayoutMarginsFromSafeArea = YES;
     
     UILayoutGuide* guide = self.view.safeAreaLayoutGuide;
             
     self.tableView.insetsContentViewsToSafeArea = YES;
-    
+        
     [self.tableView.topAnchor constraintEqualToAnchor:guide.topAnchor constant:0].active = YES;
     [guide.bottomAnchor constraintEqualToAnchor:self.tableView.bottomAnchor constant:0].active = YES;
 
@@ -267,13 +317,26 @@
         
         [tempArr removeObject:student];
         sourceGroupe.students = tempArr;
-        
+                
         Group* destinationGroup = [self.groupsArr objectAtIndex:destinationIndexPath.section];
         
         tempArr = [NSMutableArray arrayWithArray:destinationGroup.students];
         [tempArr insertObject:student atIndex:destinationIndexPath.row - 1];
         
         destinationGroup.students = tempArr;
+        
+        if ([sourceGroupe.students count] == 0) {
+            //delete group
+            
+            [self.groupsArr removeObjectAtIndex:sourceIndexPath.section];
+            
+            NSIndexSet* deleteSections = [NSIndexSet indexSetWithIndex:sourceIndexPath.section];
+            
+            [self.tableView beginUpdates];
+            [self.tableView deleteSections:deleteSections withRowAnimation:UITableViewRowAnimationLeft];
+            [self.tableView endUpdates];
+            
+        }
         
     }
     
@@ -297,13 +360,33 @@
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
         [self.tableView endUpdates];
         
+        if ([group.students count] == 0) {
+            //Delete group
+            
+            [self.groupsArr removeObjectAtIndex:indexPath.section];
+            
+            NSIndexSet* deleteSections = [NSIndexSet indexSetWithIndex:indexPath.section];
+            
+            [self.tableView beginUpdates];
+            [self.tableView deleteSections:deleteSections withRowAnimation:UITableViewRowAnimationLeft];
+            [self.tableView endUpdates];
+            
+        }
+        
         completionHandler(YES);
         
         
     }];
     delete.backgroundColor = [UIColor  purpleColor]; //arbitrary color
     
-    UISwipeActionsConfiguration *swipeActionConfig = [UISwipeActionsConfiguration configurationWithActions:@[delete]];
+    UISwipeActionsConfiguration *swipeActionConfig = nil;
+    
+    if (indexPath.row != 0) {
+        swipeActionConfig = [UISwipeActionsConfiguration configurationWithActions:@[delete]];
+    } else {
+        swipeActionConfig = [UISwipeActionsConfiguration configurationWithActions:@[]];
+    }
+    
     swipeActionConfig.performsFirstActionWithFullSwipe = NO;
     
     return swipeActionConfig;
@@ -373,6 +456,16 @@
         });
         
     }
+    
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+        
+    cell.alpha = 0.0;
+    
+    [UIView animateWithDuration:0.4 animations:^{
+        cell.alpha = 1.0;
+    }];
     
 }
 
